@@ -8,8 +8,19 @@ gem 'rails-api'
 gem 'spring', :group => :development
 
 
-gem 'sqlite3'
+gem 'pg'
 
+gem 'rails_12factor'
+
+gem 'jbuilder'
+
+gem 'kaminari'
+
+
+
+group :development, :test do
+  gem 'rspec-rails'
+end
 
 
 # To use ActiveModel has_secure_password

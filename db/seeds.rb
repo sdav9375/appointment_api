@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'csv'
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'appt_data1.csv'))
+csv = CSV.parse(csv_text, :headers => true, :col_sep => ';')
+csv.each do |row|
+  Appointment.create!(row.to_hash)
+end
