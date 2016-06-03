@@ -8,7 +8,7 @@
 require 'csv'
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'appt_data.csv'))
-csv = CSV.parse(csv_text, :headers => true, :col_sep => ';')
+csv = CSV.parse(csv_text, :headers => true)
 csv.each do |row|
   Appointment.create!(row.to_hash)
 end
