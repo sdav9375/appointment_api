@@ -1,15 +1,15 @@
 module Api::V1
 
   class AppointmentsController < ApplicationController
-
+    protect_from_forgery with: :null_session
     before_action :set_appointment, only: [:show, :update, :destroy]
-
+    respond_to :json
     # GET /appointments
     # GET /appointments.json
     def index
       @appointments = Appointment.all
       respond_to do |format|
-        format.json { render :json => @appointments}
+        format.json { render :json => @appointments, status: :ok }
       end
     end
 
@@ -52,6 +52,11 @@ module Api::V1
     end
 
     private
+
+    def set_appointment
+      @appointment = Appointment.find(params[:id])
+    end
+    
 
     def query_params
       params.permit(:first_name, :last_name, :date, :start_time, :end_time, :comments)

@@ -9,6 +9,7 @@ gem 'spring', :group => :development
 
 gem 'active_model_serializers'
 
+gem 'responders', '~> 2.0'
 
 gem 'pg'
 
