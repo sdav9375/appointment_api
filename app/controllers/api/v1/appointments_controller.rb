@@ -1,9 +1,7 @@
 module Api::V1
 
   class AppointmentsController < ApplicationController
-    protect_from_forgery with: :null_session
     before_action :set_appointment, only: [:show, :update, :destroy]
-    respond_to :json
     # GET /appointments
     # GET /appointments.json
     def index
@@ -34,8 +32,6 @@ module Api::V1
     # PATCH/PUT /appointments/1
     # PATCH/PUT /appointments/1.json
     def update
-      @appointment = Appointment.find(params[:id])
-
       if @appointment.update(appointment_params)
         head :no_content
       else
@@ -47,7 +43,6 @@ module Api::V1
     # DELETE /appointments/1.json
     def destroy
       @appointment.destroy
-
       head :no_content
     end
 
@@ -56,7 +51,7 @@ module Api::V1
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end
-    
+
 
     def query_params
       params.permit(:first_name, :last_name, :date, :start_time, :end_time, :comments)

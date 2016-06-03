@@ -1,14 +1,10 @@
 require "rails_helper"
 
-RSpec.describe AppointmentsController, type: :routing do
+RSpec.describe API::V1::AppointmentsController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
       expect(:get => "/appointments").to route_to("appointments#index")
-    end
-
-    it "routes to #new" do
-      expect(:get => "/appointments/new").to route_to("appointments#new")
     end
 
     it "routes to #show" do
