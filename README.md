@@ -1,20 +1,20 @@
 
 
-# APPOINTMENT API
+## APPOINTMENT API
 
-## HTTParty Get
+### HTTParty Get
 
 HTTParty.get 'http://api/v1/appointments.json'
 
-## HTTParty Post
+### HTTParty Post
 
 HTTParty.post('http://api/v1/appointments', body: { user: {name: "Json", age: "22", city: "Plainsville", state: "NV"} })
 
-## HTTParty Patch
+### HTTParty Patch
 
 HTTParty.patch('http://api/v1/appointments/4', body: { user: {name: "Jason"} })
 
-## HTTParty Delete
+### HTTParty Delete
 
 HTTParty.delete 'http://api/v1/users/4' 
 
