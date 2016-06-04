@@ -8,8 +8,8 @@
 require 'open-uri'
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'appt_data.csv'))
-csv = CSV.open(csv_text, :headers => true, :encoding => 'ISO-8859-1', :row_sep => "\r\n", :col_sep => ";")
+csv_text = File.path(Rails.root.join('lib', 'seeds', 'appt_data.csv'))
+csv = CSV.open(csv_text, :headers => true, :encoding => 'ISO-8859-1', skip_blanks: true).reject { |row| row.all?(&:nil?) }
 csv.each do |row|
   t = Appointment.new
   t.first_name = row['first_name']
