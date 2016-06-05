@@ -15,10 +15,7 @@ csv.each do |row|
   t.first_name = row['first_name']
   t.last_name = row['last_name']
   t.comments = row['comments']
-  t.start_time = row['start_time']
-  t.end_time = row['end_time']
+  t.start_time = DateTime.strptime(row['start_time'], '%m/%d/%y %H:%M')
+  t.end_time = DateTime.strptime(row['end_time'], '%m/%d/%y %H:%M')
   t.save
-  puts "#{t.first_name}, #{t.last_name} saved"
 end
-
-puts "There are now #{Appointment.count} rows in the appointments table"
