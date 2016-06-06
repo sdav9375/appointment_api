@@ -17,11 +17,15 @@
 class Appointment < ActiveRecord::Base
   include ActiveModel::Validations
 
+
   validates :first_name, :last_name, :start_time, :end_time, presence: true
 #   validate :conflicting_appts
 #   validate :appointment_range_in_future
 #   validates_with ConflictValidator
 #
+
+
+
 #
 #
 # take all appointments

@@ -3,8 +3,7 @@ module Api::V1
   class AppointmentsController < ApplicationController
     before_action :set_appointment, only: [:show, :update, :destroy]
 
-    before_save :corrected_params
-
+    before_action :correct_params, only: [:create, :update]
     # GET /appointments
     # GET /appointments.json
     def index
@@ -25,7 +24,7 @@ module Api::V1
 
 
       if @appointment.save
-        render json: @appointment, status: :created, location: @appointment
+        render json: @appointment, status: :created, location: @appointment_params
       else
         render json: @appointment.errors, status: :unprocessable_entity
       end
@@ -50,11 +49,9 @@ module Api::V1
 
     private
 
-    def corrected_params
-      start_time = appointment_params[:start_time]
-      end_time = appointment_params[:end_time]
-      appointment_params[:start_time] = DateTime.strptime(row['start_time'], '%m/%d/%y %H:%M')
-      appointment_params[:end_time] = DateTime.strptime(row['end_time'], '%m/%d/%y %H:%M')
+    def correct_params
+      appointment_params[:start_time] = DateTime.strptime(appointment_params[:start_time], '%m/%d/%y %H:%M')
+      appointment_params[:end_time] = DateTime.strptime(appointment_params[:end_time], '%m/%d/%y %H:%M')
     end
 
     def set_appointment
