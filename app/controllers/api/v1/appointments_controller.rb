@@ -2,6 +2,9 @@ module Api::V1
 
   class AppointmentsController < ApplicationController
     before_action :set_appointment, only: [:show, :update, :destroy]
+
+    before_save :corrected_params
+
     # GET /appointments
     # GET /appointments.json
     def index
@@ -48,14 +51,15 @@ module Api::V1
     private
 
     def corrected_params
+      start_time = appointment_params[:start_time]
+      end_time = appointment_params[:end_time]
+      appointment_params[:start_time] = DateTime.strptime(row['start_time'], '%m/%d/%y %H:%M')
+      appointment_params[:end_time] = DateTime.strptime(row['end_time'], '%m/%d/%y %H:%M')
     end
-
-
 
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end
-
 
     def query_params
       params.permit(:first_name, :last_name, :date, :start_time, :end_time, :comments)

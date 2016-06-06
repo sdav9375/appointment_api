@@ -1,31 +1,20 @@
 require 'rails_helper'
 require 'spec_helper'
 
-RSpec.describe "Appointment management", :type => :request do
+RSpec.describe "Appointment management", :type => :controller do
 
-  let(:appointment) { FactoryGirl.create(:appointment) }  #factorygirl
+  # let(:appointment) { FactoryGirl.create(:appointment) }  #factorygirl
 
   it "creates an appointment" do
+    FactoryGirl.create(:appointment)
     headers = { "ACCEPT" => "application/json" }
-    post "/appointments", { :appointment => {:name => "My Widget"} }, headers
+    post "/appointments"
     expect(response.content_type).to eq("application/json")
     expect(response).to have_http_status(:created)
   end
 
 end
 
-describe "Messages API" do
-
-  it 'sends a list of messages' do
-    FactoryGirl.create_list(:message, 10)
-    get '/api/v1/messages'
-    json = JSON.parse(response.body)
-    # test for the 200 status-code
-    expect(response).to be_success
-    # check to make sure the right amount of messages are returned
-    expect(json['messages'].length).to eq(10)
-  end
-end
 
 
 # This should return the minimal set of attributes required to create a valid
@@ -59,6 +48,17 @@ describe "GET #show" do
     get :show, {:id => appointment.to_param}, valid_session
     expect(assigns(:appointment)).to eq(appointment)
   end
+end
+
+it "creates an appointment" do
+  FactoryGirl.create(:appointment)
+  headers = { "ACCEPT" => "application/json" }
+  post "/appointments"
+  expect(response.content_type).to eq("application/json")
+  expect(response).to have_http_status(:created)
+  expect {
+    post :create, {:appointment => valid_attributes}, valid_session
+  }.to change(Appointment, :count).by(1)
 end
 
 describe "POST #create" do
