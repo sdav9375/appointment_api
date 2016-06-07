@@ -32,8 +32,7 @@ RSpec.describe Appointment, type: :model do
     expect(FactoryGirl.build(:appointment, :end_time_in_past)).not_to be_valid
   end
 
-  it "is invalid if start time or end time overlap other appointments"
-  # expect(:appointment).to equal(nil)
-  # expect{}.to raise_error("Appointment is overlapping another appointment")
-
+  it "is invalid if start time or end time overlap other appointments" do
+    expect(FactoryGirl.build(:appointment, :has_conflicting_appointment_with_seed)).not_to be_valid
+  end
 end

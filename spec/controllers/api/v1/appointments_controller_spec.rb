@@ -20,8 +20,8 @@ RSpec.describe Api::V1::AppointmentsController, :type => :controller do
       first_name: "jane",
       last_name: "smith",
       comments: "test",
-      start_time: "6/1/16 9:30",
-      end_time: "6/1/16 9:35"
+      start_time: "7/1/16 9:30",
+      end_time: "7/1/16 9:35"
       }}
 
       it "creates an appointment" do
@@ -40,7 +40,7 @@ RSpec.describe Api::V1::AppointmentsController, :type => :controller do
     end
   #
     describe "GET #index" do
-      
+
       it "assigns all appointments as @appointments" do
         appointment = Appointment.create! valid_attributes
         get :index, {}, valid_session
