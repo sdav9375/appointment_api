@@ -20,15 +20,12 @@ RSpec.describe Api::V1::AppointmentsController, :type => :controller do
       first_name: "jane",
       last_name: "smith",
       comments: "test",
-      # start_time: DateTime.strptime("6/1/16 9:30", '%m/%d/%y %H:%M').to_s,
       start_time: "6/1/16 9:30",
       end_time: "6/1/16 9:35"
       }}
 
-
-
       it "creates an appointment" do
-        headers = { "ACCEPT" => "application/json" }      
+        headers = { "ACCEPT" => "application/json" }
         expect {
           post :create, {appointment: valid_attributes}
         }.to change(Appointment, :count).by(1)
@@ -37,35 +34,26 @@ RSpec.describe Api::V1::AppointmentsController, :type => :controller do
     end
   end
 
+      it "assigns a newly created appointment as @appointment" do
+        post :create, {:appointment => valid_attributes}, valid_session
+        expect(assigns(:appointment)).to be_a(Appointment)
+        expect(assigns(:appointment)).to be_persisted
+      end
+    end
 
-  # describe "POST #create" do
-  #   context "with valid params" do
-  #     it "creates a new Appointment" do
-  #       expect {
-  #         post :create, {:appointment => valid_attributes}, valid_session
-  #       }.to change(Appointment, :count).by(1)
-  #     end
-  #
-  #     it "assigns a newly created appointment as @appointment" do
-  #       post :create, {:appointment => valid_attributes}, valid_session
-  #       expect(assigns(:appointment)).to be_a(Appointment)
-  #       expect(assigns(:appointment)).to be_persisted
-  #     end
-  #   end
-  #
-  #   context "with invalid params" do
-  #     it "assigns a newly created but unsaved appointment as @appointment" do
-  #       post :create, {:appointment => invalid_attributes}, valid_session
-  #       expect(assigns(:appointment)).to be_a_new(Appointment)
-  #     end
-  #
-  #     it "re-renders the 'new' template" do
-  #       post :create, {:appointment => invalid_attributes}, valid_session
-  #       expect(response).to render_template("new")
-  #     end
-  #   end
-  # end
-  # # =========================================================
+    context "with invalid params" do
+      it "assigns a newly created but unsaved appointment as @appointment" do
+        post :create, {:appointment => invalid_attributes}, valid_session
+        expect(assigns(:appointment)).to be_a_new(Appointment)
+      end
+
+      it "re-renders the 'new' template" do
+        post :create, {:appointment => invalid_attributes}, valid_session
+        expect(response).to render_template("new")
+      end
+    end
+  end
+  # =========================================================
   #
   # describe "GET #index" do
   #   it "assigns all appointments as @appointments" do
