@@ -1,28 +1,28 @@
-# class ConflictValidator < ActiveModel::Validator
-#   def validate(appointment)
-#     unless appointment[:start].name.starts_with? 'X'
-#       record.errors[:name] << 'Need a name starting with X please!'
-#     end
-#   end
-# end
-#
-# class Person
-#   include ActiveModel::Validations
-#   validates_with MyValidator
-# end
-#
-# @booked_session.each do |aSession|
-#   if (aSession.start_time..aSession.end_time).overlaps?(@start_time..@end_time) respond_to do |format|
-
 class Appointment < ActiveRecord::Base
   include ActiveModel::Validations
 
-
   validates :first_name, :last_name, :start_time, :end_time, presence: true
-#   validate :conflicting_appts
-#   validate :appointment_range_in_future
-#   validates_with ConflictValidator
-#
+  validate :appointment_start_and_end_time_is_in_the_future
+  # validate :appointment_does_not_overlap_existing_appointments
+
+  def appointment_start_and_end_time_is_in_the_future
+    if start_time.present? && start_time < DateTime.now || end_time.present? && end_time < DateTime.now
+      errors.add(:appointment_range, "Start and end times must be in the future")
+    end
+  end
+
+  def appointment_range
+      start_time...end_time
+  end
+
+  # def appointment_does_not_overlap_existing_appointments
+  #   self.appointment_range.overlaps? (any appointment ranges)
+  # end
+  #
+  # def
+
+
+
 
 
 

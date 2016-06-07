@@ -24,11 +24,11 @@ RSpec.describe Appointment, type: :model do
     expect(FactoryGirl.build(:appointment, end_time: nil)).not_to be_valid
   end
 
-  xit "is invalid if start time is not in the future" do
+  it "is invalid if start time is not in the future" do
     expect(FactoryGirl.build(:appointment, :start_time_in_past)).not_to be_valid
   end
 
-  xit "is invalid if end time is not in the future" do
+  it "is invalid if end time is not in the future" do
     expect(FactoryGirl.build(:appointment, :end_time_in_past)).not_to be_valid
   end
 
