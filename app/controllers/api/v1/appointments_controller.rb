@@ -13,7 +13,7 @@ module Api::V1
          @appointments = Appointment.where(start_time: @query_start..@query_end, end_time: @query_start..@query_end)
          render :json => @appointments, status: :ok
       else
-        @appointments = Appointment.all
+        @appointments = Appointment.where(nil)
         render :json => @appointments, status: :ok
       end
     end
