@@ -82,8 +82,8 @@ RSpec.describe "Appointment API requests", type: :request do
       first_name: "jane",
       last_name: "smith",
       comments: "test",
-      start_time: "7/1/16 9:30",
-      end_time: "7/1/16 9:35"
+      start_time: DateTime.strptime("7/1/16 9:30", '%m/%d/%y %H:%M'),
+      end_time: DateTime.strptime("7/1/16 9:30", '%m/%d/%y %H:%M')
       }
     }
 
@@ -93,8 +93,8 @@ RSpec.describe "Appointment API requests", type: :request do
                                                       { first_name: "john",
                                                         last_name: "doe",
                                                         comments: "test",
-                                                        start_time: "7/1/16 9:30",
-                                                        end_time: "7/1/16 9:35"
+                                                        start_time: "8/1/16 9:30",
+                                                        end_time: "8/1/16 9:30"
                                                       }
                                                     }
       appointment.reload
