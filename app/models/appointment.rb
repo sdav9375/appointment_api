@@ -21,5 +21,5 @@ class Appointment < ActiveRecord::Base
     if @appointments.any? {|appt| appt.appointment_range.overlaps? @appointment.appointment_range}
       errors.add("Appointments cannot overlap")
     end
-  end  
+  end
 end
