@@ -6,11 +6,11 @@ The appointment API is build in Ruby on Rails using API mode. It returns appoint
 
 ### Validations (new appointments will not be saved if any of these fail): 
 
-  - Presence of: first name, last name, start time (DateTime), end time (DateTime)
+  - Presence of: first name, last name, start time, end time
   - Start and end times must be in the future for newly created appointments
   - Appointments cannot overlap
 
-If a date and time is entered into search query params, the API will return all appointments within that time frame. The search will return appointments based on if their start or end time falls within the range. 
+If a date and time is entered into search query params, the API will return all appointments within that time frame. The search will return appointments based on whether their start or end time falls within the range. 
 
 
 ###API location:
