@@ -4,7 +4,7 @@
 
 The appointment API is build in Ruby on Rails using API mode. It returns appointments in JSON and will validate as follows:
 
-  ###Validations (new appointments will not be saved if any of these fail): 
+  ### Validations (new appointments will not be saved if any of these fail): 
 
   - Presence of: first name, last name, start time (DateTime), end time (DateTime)
   - Start and end times must be in the future for newly created appointments
