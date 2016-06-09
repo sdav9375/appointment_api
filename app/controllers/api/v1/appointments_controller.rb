@@ -7,7 +7,7 @@ module Api::V1
     # GET /api/v1/appointments
     # GET /api/v1/appointments.json
     def index
-      if appointment_params[:start_time] && appointment_params[:end_time]
+      if params[:start_time] && params[:end_time]
          @query_start = appointment_params[:start_time]
          @query_end = appointment_params[:end_time]
          @appointments = Appointment.where(start_time: @query_start..@query_end, end_time: @query_start..@query_end)
