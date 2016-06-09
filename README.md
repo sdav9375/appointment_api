@@ -33,11 +33,13 @@ https://appointment-api-sd.herokuapp.com/api/v1/appointments
 ### POST request
 
 http://appointment-api-sd.herokuapp.com/api/v1/appointments
+
 body: { appointment: {first_name: "tom", last_name: "jones", start_time: "8/1/16 7:00", end_time: "8/1/16 8:00"} })
 
 ### PATCH request
 
 http://appointment-api-sd.herokuapp.com/api/v1/appointments/4
+
 body: { appointment: {first_name: "tom", last_name: "jones", start_time: "8/1/16 7:00", end_time: "8/1/16 8:00"} })
 
 * Please note: to update one field, all fields must be entered
