@@ -2,8 +2,8 @@ class Appointment < ActiveRecord::Base
   include ActiveModel::Validations
 
   validates :first_name, :last_name, :start_time, :end_time, presence: true
-  # validate :appointment_start_and_end_time_is_in_the_future
-  # validate :appointment_does_not_overlap_existing_appointments
+  validate :appointment_start_and_end_time_is_in_the_future
+  validate :appointment_does_not_overlap_existing_appointments
 
   def appointment_start_and_end_time_is_in_the_future
     if start_time.present? && start_time < DateTime.now || end_time.present? && end_time < DateTime.now
