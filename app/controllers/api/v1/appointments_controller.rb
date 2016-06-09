@@ -7,18 +7,18 @@ module Api::V1
     # GET /api/v1/appointments
     # GET /api/v1/appointments.json
     def index
-      if appointment_params[:start_time] && appointment_params[:end_time]
-        query_start = appointment_params[:start_time]
-        query_end = appointment_params[:end_time]
-        @appointments = Appointment.where(
-                        query_start <= appointment_params[:start_time] <= query_end ||
-                        query_start <= appointment_params[:end_time] <= query_end
-                        )
-        render :json => @appointments, status: :ok
-      else
+      # if appointment_params[:start_time] && appointment_params[:end_time]
+      #   query_start = appointment_params[:start_time]
+      #   query_end = appointment_params[:end_time]
+      #   @appointments = Appointment.where(
+      #                   query_start <= appointment_params[:start_time] <= query_end ||
+      #                   query_start <= appointment_params[:end_time] <= query_end
+      #                   )
+      #   render :json => @appointments, status: :ok
+      # else
         @appointments = Appointment.all
         render :json => @appointments, status: :ok
-      end
+      # end
     end
 
     # GET /api/v1/appointments/1
