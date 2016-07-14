@@ -1,4 +1,4 @@
-
+<a href="https://codeclimate.com/github/sdav9375/appointment_api"><img src="https://codeclimate.com/github/sdav9375/appointment_api/badges/gpa.svg" /></a>
 
 ## APPOINTMENT API
 
